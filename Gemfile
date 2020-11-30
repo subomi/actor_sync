@@ -12,4 +12,6 @@ gem 'rspec', '~> 3.0'
 gem 'zeitwerk', '~> 2.4.2'
 
 # Adapters
+gem 'analytics-ruby'
 gem 'mixpanel-ruby'
+gem 'sendgrid-ruby'
