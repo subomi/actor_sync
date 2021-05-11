@@ -1,18 +1,24 @@
 # frozen_string_literal: true
 
-class Sync
-  def initialize(actor, destination)
-    @actor = actor
-    @destination = destination
-  end
-
-  def call
-    sync_job = SyncJob.new(@actor, @destination)
+module ActorSync
+  class Sync
+    def initialize(actor, destination, opts = {})
+      @actor = actor
+      @destination = destination
+      @options = opts
+    end
+  
+    def call
+      if config.sync
+        Worker.perform_later(@actor.id, @destination)
+        return
+      end
+    end
+  
+    private 
     
-    SyncWorker.perform_later(sync_job)
-    adapter_klass = Adapters.get_adapter_klass(@destination)
-    adapter = adapter_klass.new(@actor)
-
-    adapter.send
+    def config
+      Configuration
+    end
   end
 end

@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
 module ActorSync
-  VERSION = "0.1.0"
+  module Adapters
+    class Intercom
+    end
+  end
 end

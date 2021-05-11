@@ -12,15 +12,20 @@ module ActorSync
     base.extend ClassMethods
   end
 
+  def self.configure 
+    yield Configuration if block_given?
+  end
+
   module ClassMethods
     # Generate an instance method to be passed to after_commit
     # Call class method after_commit & pass earlier defined instance method.
-    def actor_sync(destination)
+    def actor_sync(destination, opts = {})
       method_name = "export_to_#{destination}"
 
       instance_eval do
-        define_method method_name do
-          Sync.new(self, destination).call
+        define_method method_name  do
+          pp "sending to third party"
+          Sync.new(self, destination, opts).call
         end
       end
 
