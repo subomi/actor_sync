@@ -1,4 +1,4 @@
-# actor_sync
+# Actor Sync
 Automatically synchronise actor information to your third party systems e.g. Mixpanel, Sendgrid, Segment etc.
 
 ## Getting Started
@@ -7,11 +7,13 @@ Automatically synchronise actor information to your third party systems e.g. Mix
 ```ruby
 ActorSync.configure do |config|
    config.sync = true
-   config.mixpanel = { api_key: '' }
+   config.mixpanel = { project_token: '' }
    config.mailchimp = { api_key: '' }
 end
+```
 
-
+`app/models/user.rb`
+```ruby
 class User < ApplicationRecord
    include ActorSync
 
@@ -26,7 +28,10 @@ class User < ApplicationRecord
       }
    end
 end
+```
 
+`app/models/company.rb`
+```ruby
 class Company < ApplicationRecord
    include ActorSync
 
@@ -42,7 +47,6 @@ end
 
 ```
 
-
-
 # TODO
-- Add Intercom
+- Write tests.
+- Refactor out plugin system.

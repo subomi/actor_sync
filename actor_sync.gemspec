@@ -3,13 +3,13 @@
 require_relative 'lib/actor_sync/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'actor_sync'
+  spec.name          = 'ActorSync'
   spec.version       = ActorSync::VERSION
   spec.authors       = ['Subomi']
   spec.email         = ['subomioluwalana71@gmail.com']
 
   spec.summary       = 'Automatically synchronise actor information to your third party systems e.g. Mixpanel, Sendgrid, etc.'
-  spec.homepage      = 'https://github.com/Subomi/actor_sync'
+  spec.homepage      = 'https://github.com/Subomi/ActorSync'
   spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
 
   spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
