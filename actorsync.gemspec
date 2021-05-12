@@ -3,7 +3,7 @@
 require_relative 'lib/actor_sync/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'ActorSync'
+  spec.name          = 'actorsync'
   spec.version       = ActorSync::VERSION
   spec.authors       = ['Subomi']
   spec.email         = ['subomioluwalana71@gmail.com']
