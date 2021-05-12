@@ -9,6 +9,7 @@ GEM_PATH = File.expand_path('..', __dir__)
 loader = Zeitwerk::Loader.for_gem
 loader.enable_reloading
 loader.setup
+loader.log!
 
 module ActorSync
   class Error < StandardError; end

@@ -49,4 +49,10 @@ end
 
 # TODO
 - Write tests.
-- Refactor out plugin system.
+- Build plugin system.
+- Add Instrumentation
+- Add support for other activejob backends - Resque etc.
+- Add support for NoSQL Databases
+- More documentation
+- Add rake tasks to manually sync data
+- Add support for mixpanel lookup tables
