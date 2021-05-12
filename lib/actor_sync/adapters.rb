@@ -2,9 +2,13 @@
 
 require 'active_support/core_ext/string'
 
-module Adapters
-  def get_adapter_klass(destination)
-    klass = "Adapters::#{destination.camelize}"
-    klass.constantize
+module ActorSync
+  module Adapters
+    class << self
+      def get_adapter_klass(destination)
+        klass = "ActorSync::Adapters::#{destination.to_s.camelize}Adapter"
+        klass.constantize
+      end
+    end
   end
 end

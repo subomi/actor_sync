@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
+require 'mixpanel-ruby'
 require 'zeitwerk'
 require 'listen'
 
 GEM_PATH = File.expand_path('..', __dir__)
+
+loader = Zeitwerk::Loader.for_gem
+loader.enable_reloading
+loader.setup
 
 module ActorSync
   class Error < StandardError; end
@@ -35,10 +40,6 @@ module ActorSync
     end
   end
 end
-
-loader = Zeitwerk::Loader.for_gem
-loader.enable_reloading
-loader.setup
 
 Listen.to("#{GEM_PATH}/lib") do
   loader.reload
