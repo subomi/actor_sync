@@ -25,4 +25,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'mixpanel-ruby'
+  spec.add_runtime_dependency 'activesupport'
+
+  spec.add_development_dependency 'listen', '~> 3.0'
+  spec.add_development_dependency 'rspec', '~> 3.0'
 end
