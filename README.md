@@ -15,11 +15,28 @@ end
 class User < ApplicationRecord
    include ActorSync
 
-   actor_sync :mixpanel
+   actor_sync :mixpanel, user_profile: true
    actor_sync :mailchimp, audience: monthly_mailing_lists
 
    def data_to_export_to_mixpanel
-      ['email', 'profile.firstname', 'profile.lastname']
+      {
+         '$first_name': profile.first_name,
+         '$last_name': profile.last_name,
+         '$email': email
+      }
+   end
+end
+
+class Company < ApplicationRecord
+   include ActorSync
+
+   actor_sync :mixpanel, group_profile: true
+
+   def data_to_export_to_mixpanel
+      {
+         '$name': name,
+         'products': products_count
+      }
    end
 end
 

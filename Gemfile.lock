@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     actor_sync (0.1.0)
+      mixpanel-ruby
 
 GEM
   remote: https://rubygems.org/

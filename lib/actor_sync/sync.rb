@@ -10,7 +10,7 @@ module ActorSync
   
     def call
       if config.sync
-        Worker.perform_later(@actor.class, @actor.id, @destination)
+        Worker.perform_later(@actor.class, @actor.id, @destination, @options)
         return
       end
     end

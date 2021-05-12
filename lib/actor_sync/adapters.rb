@@ -6,7 +6,7 @@ module ActorSync
   module Adapters
     class << self
       def get_adapter_klass(destination)
-        klass = "ActorSync::Adapters::#{destination.to_s.camelize}Adapter"
+        klass = "ActorSync::Adapters::#{destination.to_s.camelize}"
         klass.constantize
       end
     end
