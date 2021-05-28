@@ -33,7 +33,6 @@ module ActorSync
         def create
           @tracker.people.set(@distinct_id, @data)
         end
-        alias :update :create
 
         def destroy
           @tracker.people.delete_user(@distinct_id)
@@ -57,7 +56,6 @@ module ActorSync
         def create
           @tracker.groups.set(@group_key, @group_id, @data)
         end
-        alias :update :create
 
         def destroy
           @tracker.groups.delete_group(@group_key, @group_id)
@@ -85,7 +83,6 @@ module ActorSync
           @tracker ||= ::Mixpanel::Tracker.new(@config.mixpanel[:project_token])
         end
   
-        # TODO: Log a warning when this method wasn't defined.
         def retrieve_data(actor)
           raise DataMethodNotFoundError unless actor.respond_to?(:data_to_export_to_mixpanel)
           actor.data_to_export_to_mixpanel
