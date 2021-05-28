@@ -1,0 +1,35 @@
+name: Unit testing
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Ruby 2.7.2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.2
+
+      - name: Set up gems cache
+        uses: actions/cache@preview
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-ruby-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-ruby-
+
+      - name: Install Ruby dependencies
+        run: |
+          gem install bundler
+          bundle config path vendor/bundle
+          bundle install --without rubocop --jobs 4 --retry 3
+
+      - name: Run tests
+        run: rake tests
