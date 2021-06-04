@@ -1,5 +1,5 @@
 # Actor Sync
-Automatically synchronise actor information to your third party systems e.g. Mixpanel, Sendgrid, Segment etc. 
+Automatically synchronise actor information to your third party systems e.g. Mixpanel, Sendgrid, Segment etc. I currently use this in production on [Frain](https://frain.dev). 
 
 ## Getting Started
 `config/initializers/actor_sync.rb`
