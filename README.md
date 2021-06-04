@@ -17,7 +17,7 @@ end
 class User < ApplicationRecord
    include ActorSync
 
-   actor_sync :mixpanel, user_profile: true
+   actor_sync :mixpanel
    actor_sync :mailchimp, audience: monthly_mailing_lists
 
    def data_to_export_to_mixpanel
@@ -35,7 +35,7 @@ end
 class Company < ApplicationRecord
    include ActorSync
 
-   actor_sync :mixpanel, group_profile: true
+   actor_sync :mixpanel, group: true
 
    def data_to_export_to_mixpanel
       {
@@ -48,8 +48,7 @@ end
 ```
 
 # TODO
-- Write tests.
-- Build plugin system.
+- Write more tests.
 - Add Instrumentation
 - Add support for other activejob backends - Resque etc.
 - Add support for NoSQL Databases
