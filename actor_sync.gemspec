@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'mixpanel-ruby'
   spec.add_runtime_dependency 'activesupport'
 
+  spec.add_development_dependency 'pry'
   spec.add_development_dependency 'listen', '~> 3.0'
-  spec.add_development_dependency 'rspec', '~> 3.0'
+  spec.add_development_dependency 'minitest', '~> 5.14'
 end

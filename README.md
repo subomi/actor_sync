@@ -1,5 +1,5 @@
 # Actor Sync
-Automatically synchronise actor information to your third party systems e.g. Mixpanel, Sendgrid, Segment etc.
+Automatically synchronise actor information to your third party systems e.g. Mixpanel, Sendgrid, Segment etc. 
 
 ## Getting Started
 `config/initializers/actor_sync.rb`
@@ -53,6 +53,7 @@ end
 - Add Instrumentation
 - Add support for other activejob backends - Resque etc.
 - Add support for NoSQL Databases
+- Add support for Sinatra (Non-Rails environment)
 - More documentation
 - Add rake tasks to manually sync data
 - Add support for mixpanel lookup tables
