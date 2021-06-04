@@ -2,14 +2,12 @@
 
 require 'mixpanel-ruby'
 require 'zeitwerk'
-require 'listen'
 
 GEM_PATH = File.expand_path('..', __dir__)
 
 loader = Zeitwerk::Loader.for_gem
 loader.enable_reloading
 loader.setup
-loader.log!
 
 module ActorSync
   class Error < StandardError; end
@@ -26,22 +24,22 @@ module ActorSync
     # Generate an instance method to be passed to after_commit
     # Call class method after_commit & pass earlier defined instance method.
     def actor_sync(destination, opts = {})
-      method_name = "export_to_#{destination}"
+      callback_types = %i(create update destroy)
 
-      instance_eval do
-        define_method method_name  do
-          pp "sending to third party"
-          Sync.new(self, destination, opts).call
+      callback_types.each do |callback_name|
+        method_name = "export_to_#{destination}_on_#{callback_name}"
+
+        instance_eval do
+          define_method method_name  do
+            opts[:callback_type] = callback_name
+            Sync.new(self, destination, opts).call
+          end
         end
-      end
 
-      class_eval <<-METHODS, __FILE__, __LINE__ + 1
-        after_commit :#{method_name}
-      METHODS
+        class_eval <<-METHODS, __FILE__, __LINE__ + 1
+          after_commit :#{method_name}, on: :#{callback_name}
+        METHODS
+      end
     end
   end
 end
-
-Listen.to("#{GEM_PATH}/lib") do
-  loader.reload
-end.start
